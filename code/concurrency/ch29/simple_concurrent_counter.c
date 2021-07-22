@@ -64,6 +64,12 @@ static void *thread_function(void *arg) {
 }
 
 int main(int argc, char *argv[]) {
+  if(argc!=2){
+    fprintf(stderr, "Usage: %s <verbose>(0 or 1)\n", argv[0]);
+    exit(0);
+  }
+  int verbose = atoi(argv[1]);
+
   int cpus = (int)sysconf(_SC_NPROCESSORS_ONLN), s;
   if (cpus == -1)
     handle_error_en(cpus, "sysconf");
@@ -96,14 +102,20 @@ int main(int argc, char *argv[]) {
       long long startusec, endusec;
       startusec = start.tv_sec * ONE_MILLION + start.tv_usec;
       endusec = end.tv_sec * ONE_MILLION + end.tv_usec;
-      printf("%d cpus, %d threads\n", i, l);
-      printf("global count: %d\n", get(counter));
-      printf("Time (seconds): %f\n\n",
-             ((double)(endusec - startusec) / ONE_MILLION));
+
+      if(verbose){
+        printf("%d cpus, %d threads\n", i, l);
+        printf("global count: %d\n", get(counter));
+        printf("Time (seconds): %f\n\n", ((double)(endusec - startusec) / ONE_MILLION));
+      } else
+        printf("%f ", ((double)(endusec - startusec) / ONE_MILLION));
+        
       Pthread_mutex_destroy(&counter->lock);
       free(counter);
       free(tinfo);
     }
+    if(!verbose)
+      printf("\n");
   }
   return 0;
 }

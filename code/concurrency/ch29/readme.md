@@ -14,150 +14,45 @@
 [simple_concurrent_counter.c](./simple_concurrent_counter.c)
 
 ```shell
-1 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.019574
-
-1 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.030325
-
-1 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.045276
-
-1 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.060612
-
-1 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.075492
-
-1 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.090392
-
-2 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.015172
-
-2 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.080684
-
-2 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.103790
-
-2 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.157934
-
-2 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.190643
-
-2 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.225990
-
-3 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.015280
-
-3 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.079916
-
-3 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.099597
-
-3 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.120570
-
-3 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.177724
-
-3 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.200259
-
-4 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.015219
-
-4 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.080567
-
-4 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.100293
-
-4 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.169260
-
-4 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.190118
-
-4 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.253199
-
-5 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.015115
-
-5 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.078926
-
-5 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.100228
-
-5 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.169933
-
-5 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.255883
-
-5 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.273681
-
-6 cpus, 1 threads
-global count: 1000000
-Time (seconds): 0.015164
-
-6 cpus, 2 threads
-global count: 2000000
-Time (seconds): 0.079798
-
-6 cpus, 3 threads
-global count: 3000000
-Time (seconds): 0.099881
-
-6 cpus, 4 threads
-global count: 4000000
-Time (seconds): 0.169040
-
-6 cpus, 5 threads
-global count: 5000000
-Time (seconds): 0.256552
-
-6 cpus, 6 threads
-global count: 6000000
-Time (seconds): 0.342295
+0.015263 0.030379 0.046761 0.061528 0.077000 0.091352 
+0.015700 0.083470 0.091815 0.145489 0.183284 0.236435 
+0.016238 0.083252 0.099227 0.118351 0.167665 0.202726 
+0.015649 0.072178 0.099315 0.176698 0.202149 0.274505 
+0.015710 0.064861 0.100234 0.176128 0.226223 0.270946 
+0.015740 0.078997 0.097957 0.163471 0.224911 0.296144
 ```
+
+![](./simple.png)
+
+
 
 ### 3. Next, build a version of the sloppy counter. Once again, measure its performance as the number of threads varies, as well as the threshold. Do the numbers match what you see in the chapter?  
 
+[sloppy_counter.c](./sloppy_counter.c)  
+
+```shell
+espeon@Espeon:~/work/OSTEP/code/concurrency/ch29$ ./a.out 0
+1: 0.033200 0.274310 0.361561 0.598504 0.735033 0.952322 
+2: 0.026624 0.148486 0.233405 0.358212 0.474662 0.614110 
+4: 0.023045 0.134013 0.182228 0.296255 0.406204 0.520148 
+8: 0.020804 0.126154 0.165833 0.258369 0.359490 0.462559 
+16: 0.020130 0.117978 0.153522 0.237807 0.310521 0.392752 
+32: 0.019491 0.117341 0.148504 0.234476 0.315212 0.407668 
+64: 0.019286 0.107864 0.139288 0.227050 0.292868 0.399338 
+128: 0.019007 0.104595 0.138453 0.223876 0.280016 0.377089 
+256: 0.019321 0.109070 0.143088 0.217458 0.292880 0.370967 
+512: 0.018989 0.109378 0.139339 0.220152 0.293490 0.370451 
+1024: 0.018997 0.104352 0.140361 0.207275 0.268334 0.367954 
+```
+
+Results of 6 threads:  
+![](./sloppy_counter.png)
+
+### 4. Build a version of a linked list that uses hand-over-hand locking[MS04], as cited in the chapter. You should read the paper first to understand how it works, and then implement it. Measure its performance. When does a hand-over-hand list work better than a standard list as shown in the chapter?
+
+[hand-over-hand-linked-list.c](./hoh_list.c)  
+
+
+> Never.  
+
+### 5. 
