@@ -1,7 +1,7 @@
-#ifdef Linux
+//#ifdef Linux
 #define _GNU_SOURCE
 #include <sched.h> // CPU_ZERO
-#endif
+//#endif
 
 #ifdef FreeBSD
 #include <malloc_np.h>
