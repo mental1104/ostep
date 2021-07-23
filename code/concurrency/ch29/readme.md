@@ -1,5 +1,9 @@
 # Chapter 29 Lock-based Concurrent Data Structures  
 
+## Concurrent Data Structure  
+
++ [concurrent linked list](./concurrent_linked_list.c)  
++ [concurrent queue](./concurrent_queue.c)  
 ## Homework  
 
 ---
@@ -55,4 +59,11 @@ Results of 6 threads:
 
 > Never.  
 
-### 5. 
+### 5. Pick your favorite interesting data structure, such as a B-tree or other slightly more interested structure. Implement it, and start with a simple locking strategy such as a single lock. Measure its performance as the number of concurrent threads increases.  
+
+[btree.c](./btree.c)
+
+```shell
+5.814809 14.298914 23.459987 35.435726 56.374765 75.094495 88.125039 104.881222 122.401781 109.825442
+```  
+![](./btree.png)
