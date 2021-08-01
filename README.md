@@ -31,4 +31,4 @@ Note for OSTEP
 ## Persistence  
 
 + [37. Hard Disk Drives](./code/persistence/ch37)
-
++ [38. Redundant Arrays of Inexpensive Disks (RAIDs)](./code/persistence/ch38)
