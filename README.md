@@ -34,3 +34,4 @@ Note for OSTEP
 + [38. Redundant Arrays of Inexpensive Disks (RAIDs)](./code/persistence/ch38)
 + [39. Interlude: Files and Directories](./code/persistence/ch39)
 + [40. File System Implementation](./code/persistence/ch40)
++ [41. Locality and The Fast File System](./code/persistence/ch41)
