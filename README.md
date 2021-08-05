@@ -35,3 +35,4 @@ Note for OSTEP
 + [39. Interlude: Files and Directories](./code/persistence/ch39)
 + [40. File System Implementation](./code/persistence/ch40)
 + [41. Locality and The Fast File System](./code/persistence/ch41)
++ [42. Crash Consistency: FSCK and Journaling](./code/persistence/ch42)
